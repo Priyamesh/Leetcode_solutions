@@ -17,6 +17,7 @@ public:
         int max_sum=INT_MIN;
         int window_sum=0;
         
+        //making a sliding window
         for(int i=0;i<n-k;i++)
         {
             window_sum+=cardPoints[i];
@@ -24,9 +25,9 @@ public:
         
         max_sum=max(max_sum,sum-window_sum);
         
+        //moving the sliding window
         int left=0;
         int right=n-k;
-        
         while(right<n)
         {
             window_sum=window_sum-cardPoints[left++]+cardPoints[right++];
