@@ -10,40 +10,37 @@
  */
 class Solution {
 public:
+    
     /* Idea:
-    check if two nodes are qual or not
+    check if two nodes are equal or not
     if not -> move the pointer ahead
     if yes -> note the value and move ahead till the values are same
     */
-
+    
     ListNode* deleteDuplicates(ListNode* head) {
         
-        ListNode *dummy=new ListNode(-1);
+        ListNode* dummy=new ListNode(-1);
         dummy->next=head;
-        ListNode *curr=dummy;
+        ListNode* curr=dummy;
         
         //checking if there are 2 nodes after curr 
         //if not break the loop as for duplicate values we need two nodes
         while(curr->next && curr->next->next)
         {
-            //if the nodes val are not equal move ahead
-            if(curr->next->val != curr->next->next->val)
+            if(curr->next->val == curr->next->next->val)
             {
-                curr=curr->next;
-            }
-            else
-            {
-                //if nodes have equal val note the val
-                //and loop in till we get the same value 
+                //move ahead until values are same
                 int key=curr->next->val;
                 while(curr->next && curr->next->val==key)
                 {
-                    //change the pointer
                     curr->next=curr->next->next;
                 }
             }
+            else
+            {
+                curr=curr->next;
+            }
         }
-        
         return dummy->next;
     }
 };
