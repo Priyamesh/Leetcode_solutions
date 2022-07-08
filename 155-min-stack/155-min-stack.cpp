@@ -17,7 +17,7 @@ public:
     void pop() {
         int key=st.top();
         st.pop();
-        mst.erase(find(mst.begin(),mst.end(),key));
+        mst.erase(mst.find(key));
     }
     
     int top() {
