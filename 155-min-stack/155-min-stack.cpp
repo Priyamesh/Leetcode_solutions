@@ -1,24 +1,23 @@
 class MinStack {
 public:
     
-    stack<int>st,minstack;
+    stack<int>st;
+    multiset<int>mst;
+    
     MinStack() {
-        // hello
+        // st.clear();
+        // mst.clear();
     }
     
     void push(int val) {
         st.push(val);
-        
-        if(minstack.empty() || val<=minstack.top())
-            minstack.push(val);
-        
+        mst.insert(val);
     }
     
     void pop() {
-        if(st.top()==minstack.top())
-            minstack.pop();
-        
+        int key=st.top();
         st.pop();
+        mst.erase(find(mst.begin(),mst.end(),key));
     }
     
     int top() {
@@ -26,7 +25,7 @@ public:
     }
     
     int getMin() {
-        return minstack.top();
+        return *mst.begin();
     }
 };
 
