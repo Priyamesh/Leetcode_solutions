@@ -18,10 +18,10 @@ public:
         while(!pq.empty())
         {
             auto p=pq.top();pq.pop();
-            string temp="";
-            for(int i=1;i<=p.first;i++){
-                temp+=p.second;
-            }
+            string temp=string(p.first,p.second);
+            // for(int i=1;i<=p.first;i++){
+            //     temp+=p.second;
+            // }
             res+=temp;    
         }
         return res;
