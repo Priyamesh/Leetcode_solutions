@@ -2,27 +2,28 @@ class Solution {
 public:
     string frequencySort(string s) {
         
-        vector<pair<int,char>>hsh(256,{0,0});
-        
-        for(auto val:s)
-        {
-            hsh[val]={hsh[val].first+1,val};
+        unordered_map<char,int>memo;
+        for(auto ch:s){
+            memo[ch]++;
         }
-        sort(hsh.begin(),hsh.end());
         
-        string out="";
-        for(auto val:hsh)
+        priority_queue<pair<int,char>>pq;
+        
+        for(auto p:memo)
         {
-            //out=string(val.first,val.second)+out;
+            pq.push({p.second,p.first});
+        }
+        string res="";
+        
+        while(!pq.empty())
+        {
+            auto p=pq.top();pq.pop();
             string temp="";
-            while(val.first>0)
-            {
-                temp+=val.second;
-                val.first--;
+            for(int i=1;i<=p.first;i++){
+                temp+=p.second;
             }
-            out=temp+out;
+            res+=temp;    
         }
-        return out;
-        
+        return res;
     }
 };
