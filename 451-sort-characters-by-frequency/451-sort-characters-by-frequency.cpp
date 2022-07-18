@@ -1,5 +1,13 @@
 class Solution {
 public:
+    /* Idea:
+    
+    first store the freq in map with  <char,int>
+    then store the freq in priority queue <int,char>
+    now fetch the pair and make resultant string
+    
+    */
+    
     string frequencySort(string s) {
         
         unordered_map<char,int>memo;
