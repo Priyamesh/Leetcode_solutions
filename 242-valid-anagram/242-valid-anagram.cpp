@@ -4,13 +4,13 @@ public:
         
         vector<int>hsh(26,0);
         
-        for(auto val:s)
+        if(s.size()!=t.size())
+            return false;
+        
+        for(int i=0;i<s.size();i++)
         {
-            hsh[val-'a']++;
-        }
-        for(auto val:t)
-        {
-            hsh[val-'a']--;
+            hsh[s[i]-'a']++;
+            hsh[t[i]-'a']--;
         }
         for(auto val:hsh)
         {
