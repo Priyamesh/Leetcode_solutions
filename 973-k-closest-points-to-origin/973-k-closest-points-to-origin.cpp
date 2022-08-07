@@ -1,10 +1,20 @@
 class Solution {
 public:
+    
+    /*Idea: 
+    we are calulation the distance from origin to the given point and storing in priority queue
+    but we are using a trick that
+    we are just calcultaing the pow part and not the sqrt 
+    bcoz the grater the pow part the greter the sqrt part and
+    for comparion it doesn't matter
+    and we are storing it in array
+    arr[0] will store the dis and next two will store x and y
+    */
+    
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
         
         vector<vector<int>>res;
         priority_queue<vector<int>>pq;
-        
         
         for(auto p:points)
         {
