@@ -1,25 +1,28 @@
 class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-         //Answer vector
-        vector<vector<int>> result(k);
-        //maxheap storage initialization
-        priority_queue<vector<int>> maxHeap;
-        //Construction of maxheap
-        for (auto& p : points) {
-            int x = p[0], y = p[1];
-            maxHeap.push({x*x + y*y, x, y});
-            if (maxHeap.size() > k) {
-                maxHeap.pop();
-            }
-        }
         
-        for (int i = 0; i < k; ++i) {
-            vector<int> top = maxHeap.top();
-            maxHeap.pop();
-            result[i] = {top[1], top[2]};
-        }
+        vector<vector<int>>res;
+        priority_queue<vector<int>>pq;
         
-        return result;
+        
+        for(auto p:points)
+        {
+            int x_axis=pow((p[0]-0),2);
+            int y_axis=pow((p[1]-0),2);
+            
+            int dis=(x_axis+y_axis);
+            
+            pq.push({dis,p[0],p[1]});
+            
+            if(pq.size()>k)
+                pq.pop();
+        }
+        while(!pq.empty())
+        {
+            auto vec=pq.top();pq.pop();
+            res.push_back({vec[1],vec[2]});
+        }
+        return res;
     }
 };
