@@ -12,26 +12,28 @@
 class Solution {
 public:
     
-    TreeNode*  create(vector<int>& nums,int low,int high)
+    TreeNode* BST(int low,int high,vector<int>& nums)
     {
-        if(low > high )
+        if(low>high)
             return 0;
         
         int mid=low+(high-low)/2;
+        // cout<<mid<<"\n";
         
-        TreeNode* temp=new TreeNode(nums[mid]);
-        temp->left=create(nums,low,mid-1);
-        temp->right=create(nums,mid+1,high);
+        TreeNode* root=new TreeNode(nums[mid]);
         
-        return temp;
+        root->left=BST(low,mid-1,nums);
+        root->right=BST(mid+1,high,nums);
+        
+        return root;
     }
     
+    
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        
         int low=0;
         int high=nums.size()-1;
         
-        TreeNode* res=create(nums,low,high);
-        return res;
+        return BST(low,high,nums);
+        
     }
 };
