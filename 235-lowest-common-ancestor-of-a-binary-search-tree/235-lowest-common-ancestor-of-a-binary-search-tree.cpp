@@ -10,20 +10,23 @@
 
 class Solution {
 public:
+    
+    /* Idea:
+        check wheter root node is greator than p and q or less than p and q
+        if in between than return the node
+    */
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        
         
         while(root)
         {
-            if(p->val<root->val && q->val <root->val)
+            if(root->val > p->val && root->val > q->val)
                 root=root->left;
-        
-            else if(p->val>root->val && q->val>root->val)
+            else if(root->val < p->val && root->val < q->val)
                 root=root->right;
-
-            else 
+            else
                 break;
         }
-        return root;   
-        
+        return root;
     }
 };
