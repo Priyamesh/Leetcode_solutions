@@ -9,13 +9,11 @@ public:
             
             if(nums[index]<0)
             {
-                nums[index]*=-1;
                 res.push_back(index+1);
             }
-            else
-            {
-                nums[index]*=-1;
-            }
+            
+            nums[index]*=-1;
+
         }
 
         return res;
