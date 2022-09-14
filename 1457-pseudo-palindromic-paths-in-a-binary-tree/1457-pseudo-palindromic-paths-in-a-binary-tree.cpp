@@ -12,7 +12,7 @@
 class Solution {
 public:
     
-    bool checkForPlaindrome(vector<int>memo)
+    bool checkForPlaindrome(vector<int>&memo)
     {
         int odd_count=0;
         for(auto val:memo)
@@ -41,17 +41,17 @@ public:
             auto p=st.top();st.pop();
             TreeNode *curr=p.first;
             
-            vector<int>memo=p.second;
-            memo[curr->val]++;
+            // vector<int>memo=p.second;
+            p.second[curr->val]++;
             
             if(curr->left)
-                st.push({curr->left,memo});
+                st.push({curr->left,p.second});
             if(curr->right)
-                st.push({curr->right,memo});
+                st.push({curr->right,p.second});
             
             // check for leaf node
             if(curr->left==0 && curr->right==0)
-                res+=checkForPlaindrome(memo);
+                res+=checkForPlaindrome(p.second);
                 
         }
         return res;
