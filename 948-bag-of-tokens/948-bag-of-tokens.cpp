@@ -4,31 +4,26 @@ public:
         
         sort(tokens.begin(),tokens.end());
         int score=0;
-        
+        int res=0;
         int left=0;
         int right=tokens.size()-1;
         
         while(left<=right)
         {
-            if( tokens[left] > power )
-                break;
-            // cout<<"left="<<left <<" right="<<right<<" score="<<score<<" power="<<power<<"\n";
-            
-            if(tokens[left] <= power)
+            if(power >= tokens[left])
             {
-                power-=tokens[left];
+                power-=tokens[left++];
                 score++;
-                left++;
+                res=max(res,score);
             }
-            // cout<<"left="<<left <<" right="<<right<<" score="<<score<<" power="<<power<<"\n";
-            if( (left<right) &&  (score>=1) && (power < tokens[left]) )
+            else if(score > 0)
             {
-                power+=tokens[right];
+                power+=tokens[right--];
                 score--;
-                right--;
             }
-            // cout<<"left="<<left <<" right="<<right<<" score="<<score<<" power="<<power<<"\n";
+            else
+                break;
         }
-        return score;
+        return res;
     }
 };
