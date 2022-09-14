@@ -1,39 +1,40 @@
 class Solution {
 public:
-    
     vector<string>res;
-    void helper(string s,int index,string str)
+    
+    void helper(int index,string str,string s)
     {
-        if(str.size()==s.size()){
+        if(index==s.size())
+        {
             res.push_back(str);
         }
         
-        
-        //if integer
+        //if digit
         if(isdigit(s[index]))
         {
             str.push_back(s[index]);
-            helper(s,index+1,str);
+            helper(index+1,str,s);
         }
         
         //if character
-        if(isalpha(s[index]))
+        if( isalpha(s[index]))
         {
-            //lowercase
+            //lower
             str.push_back(tolower(s[index]));
-            helper(s,index+1,str);
+            helper(index+1,str,s);
             str.pop_back();
             
-            //uppercase
+            
+            //upper
             str.push_back(toupper(s[index]));
-            helper(s,index+1,str);
+            helper(index+1,str,s);
+            str.pop_back();
         }
     }
     
-    
     vector<string> letterCasePermutation(string s) {
         string str="";
-        helper(s,0,str);
+        helper(0,str,s);
         return res;
     }
 };
