@@ -12,14 +12,14 @@ public:
         {
             if(power >= tokens[left])
             {
-                power-=tokens[left++];
-                score++;
+                power -= tokens[left++];
+                score+=1;
                 res=max(res,score);
             }
-            else if(score > 0)
+            else if( power < tokens[left]  && score > 0 )
             {
+                score-=1;
                 power+=tokens[right--];
-                score--;
             }
             else
                 break;
